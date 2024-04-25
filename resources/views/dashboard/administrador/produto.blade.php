@@ -15,29 +15,30 @@
             <div class="col-xl-3 col-md-6 mb-xl-0 pb-4">
                 <div class="card h-100 card-plain border h-100">
                   <div class="card-body d-flex flex-column justify-content-center text-center">
-                    <a href="javascript:;">
-                      <i class="fa fa-plus text-secondary mb-3 text-4xl"></i>
-                      <h5 class=" text-secondary">Adicionar</h5>
-                    </a>
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#create">
+                        <i class="fa fa-plus text-secondary mb-3 text-4xl"></i>
+                        <h5 class="text-secondary">Adicionar</h5>
+                    </button>
                   </div>
                 </div>
-              </div>
+            </div>
             @foreach ($produtos as $produto)
             <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
                 <div class="card card-blog card-plain">
                     <div class="position-relative">
-                        <a class="d-block shadow-xl border-radius-xl">
-                        <img class="w-100 border-radius-xl" src="{{ asset('img/produtos/' . $produto->categoriaProduto . '/' . $produto->fotoProduto) }}" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
+                        <a class="d-block shadow-xl border-radius-xl position-relative">
+                            <span class="badge badge-sm bg-gradient-success position-absolute m-3">ativo</span>
+                            <img class="w-100 border-radius-xl" src="{{ asset('img/produtos/' . $produto->categoriaProduto . '/' . $produto->fotoProduto) }}" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
                         </a>
                     </div>
                     <div class="card-body px-1 pb-0 mb-5">
-                        @if ($produto->categoriaProduto == '1')
+                        {{-- @if ($produto->categoriaProduto == 'sorvetePote')
                             <p class="text-gradient text-dark mb-2 text-sm">Sorvete de pote</p>
-                        @elseif ($produto->categoriaProduto == '2')
+                        @elseif ($produto->categoriaProduto == 'picole')
                             <p class="text-gradient text-dark mb-2 text-sm">Picolé</p>
-                        @elseif ($produto->categoriaProduto == '3')
+                        @elseif ($produto->categoriaProduto == 'acai')
                             <p class="text-gradient text-dark mb-2 text-sm">Açaí</p>
-                        @endif
+                        @endif --}}
                         <a href="javascript:;">
                         <h5>
                             {{ $produto->nomeProduto }}
@@ -48,7 +49,7 @@
                         </p>
                         <div class="d-flex align-items-center justify-content-between">
                         <p class="mb-0 text-bolder text-2xl">R$ {{ $produto->valorProduto }}</p>
-                        <button type="button" class="btn btn-outline-primary btn-sm mb-0">Editar</button>
+                        <button type="button" class="btn btn-outline-primary btn-sm mb-0 bg-gradient-primary">Editar</button>
                         </div>
                     </div>
                 </div>
@@ -59,5 +60,6 @@
       </div>
     </div>
   </div>
-
+  
+@include('dashboard.administrador.produto.create')
 @endsection
